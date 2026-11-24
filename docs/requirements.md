@@ -1,53 +1,62 @@
 # Product Requirements
 
-> **Status:** not written yet. Replace this guidance with the requirements of your own application.
-
-This file describes **what** your application must do. AI agents read it before planning or implementing anything (it is loaded automatically through `opencode.jsonc`), so clear requirements lead to better code. Write it in English.
-
-Keep **how** it is built (technical decisions) in `docs/architecture.md`.
-
-## How to write good requirements
-
-- **Define a small but complete MVP** (minimum viable product): the smallest version of your idea that a real user could use from start to finish. Example size: 3–6 user stories.
-- **Be specific and observable.** "The user sees an error message when the title is empty" is testable; "the form is user-friendly" is not.
-- **Write down what is out of scope.** It stops you (and the AI) from building extra features.
-- **Update this file when you change your mind**, before asking an agent to implement the change.
-- Ask an AI agent to help you write and critique this file, but make the final decisions yourself.
-
----
+> **Status:** draft
 
 ## 1. Product overview
 
-<!--
-- What is the application called?
-- What problem does it solve, and for whom?
-- One or two sentences that describe the main idea.
--->
+
+## 1. Product overview
+
+**UNSTUCK** is a self-reflection web application that helps people identify possible reasons for procrastination and discover practical strategies to start postponed tasks.
+
+Unlike traditional productivity apps, UNSTUCK focuses on understanding personal obstacles and recognizing behavioral patterns rather than tracking completed tasks.
 
 ## 2. Users
 
-<!--
-Who uses the application? Example: "a student who wants to track homework deadlines".
--->
+The primary target audience includes:
+
+- **Students** who struggle to begin assignments or prepare for exams.
+- **Self-learners** working on courses and personal projects.
+- **Individuals interested in self-improvement** who want to better understand their procrastination habits.
+
+**MVP role:** A single user without registration or authentication.
 
 ## 3. User stories
 
-<!--
-Format: As a <type of user>, I want <goal> so that <reason>.
+1. **Record procrastination:** As a user, I want to record a task I am postponing and select a possible reason, so that I can better understand what prevents me from starting.
 
-1. As a ..., I want ... so that ...
-2. As a ..., I want ... so that ...
--->
+2. **Get a strategy:** As a user, I want to receive a practical strategy based on my selected reason, so that I can take a small, manageable first step.
+
+3. **Evaluate the strategy:** As a user, I want to indicate whether the suggested strategy helped, partially helped, or did not help, so that I can reflect on what works for me.
+
+4. **Identify patterns:** As a user, I want to see a chart of my most frequently reported procrastination reasons, so that I can recognize recurring obstacles.
 
 ## 4. Scope
 
 ### In scope (MVP)
 
-<!-- The features you will build now. -->
+- Record a Procrastination Entry with a task description and a selected Procrastination Reason.
+- Choose a reason from a predefined list.
+- Receive a rule-based Strategy Suggestion based on the selected reason.
+- Record Strategy Feedback: helped, partially helped, or not_helped.
+- Save entries and feedback so they remain available after refreshing the page.
+- View Basic Insights showing Reason Frequency in a chart.
+- Display clear validation messages, loading states, and empty states.
+- Provide a responsive interface for desktop and mobile browsers.
 
 ### Out of scope
 
-<!-- Features you will NOT build now (for example: user accounts, payments, mobile app). -->
+- User Accounts, registration, and authentication.
+- Multi-user support.
+- Payments, subscriptions, and paid APIs.
+- AI-generated recommendations.
+- Medical or psychological diagnoses.
+- Push notifications and reminders.
+- Daily streaks and gamification.
+- Native mobile applications.
+- Automatic detection of procrastination.
+- Advanced progress analytics and weekly comparisons.
+- **Your Growth**, a future progress dashboard described in [Your Growth](features/your-growth.md).
 
 ## 5. Acceptance criteria
 

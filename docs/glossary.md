@@ -1,17 +1,41 @@
-# Glossary
+# UNSTUCK — Glossary
 
-> **Status:** not written yet. Replace this guidance with the terms of your own application.
+**Status:** Draft
 
-The words of your domain and what exactly they mean in **this** app. AI agents read this file before every task (it is loaded through `opencode.jsonc`). Free models are weak at telling similar words apart — a clear glossary stops them from mixing up your concepts in code, UI and tests.
+This glossary defines the key terms used in UNSTUCK. Use these names consistently in requirements, code, UI, and tests.
 
-## How to write it
-
-- One row per term: the word, what it means here, what it must **not** be confused with, and its name in code.
-- Add every pair of words that sound alike but mean different things (for example *product* vs *order item*, *user role* vs *job title*).
-- Use these exact words everywhere: requirements, UI texts, code, tests. If you rename a term, change it here first.
-
-## Terms
+## 1. Users and Records
 
 | Term | Meaning in this app | Not to be confused with | In code |
-| --- | --- | --- | --- |
-| <!-- Example: Booking --> | <!-- A reserved time slot for one client --> | <!-- Visit: a booking that actually happened --> | <!-- `bookings` table, `Booking` type --> |
+|---|---|---|---|
+| User | A person using UNSTUCK. | User Account: not available in the MVP. | User (role only) |
+| Procrastination Entry | A record of a postponed task and its possible cause. | Task Description: only the text describing the task. | `ProcrastinationEntry` |
+| Task Description | The activity the user is postponing. | Procrastination Entry: the complete record. | `taskDescription` |
+| Procrastination Reason | A possible reason selected by the user. | A confirmed psychological diagnosis. | `ProcrastinationReason` |
+
+## 2. Strategies and Feedback
+
+| Term | Meaning in this app | Not to be confused with | In code |
+|---|---|---|---|
+| Strategy | A predefined action that may help the user get started. | Strategy Attempt: a record of trying it. | `Strategy` |
+| Strategy Suggestion | A strategy recommended for a selected reason. | Strategy Feedback: the result after trying it. | `StrategySuggestion` |
+| Strategy Attempt | A record linking an entry to a suggested strategy and feedback. | Strategy: the action itself. | `StrategyAttempt` |
+| Strategy Feedback | The user's evaluation of whether a strategy helped. | Strategy Suggestion: the recommendation. | `StrategyFeedback` |
+
+## 3. Insights and Progress
+
+| Term | Meaning in this app | Not to be confused with | In code |
+|---|---|---|---|
+| Reason Frequency | The number of entries with a particular reason. | Start Rate: a percentage of successful attempts. | `ReasonFrequency` |
+| Basic Insights | The MVP dashboard showing common procrastination reasons. | Your Growth: the future progress dashboard. | `BasicInsights` |
+| Your Growth | A future dashboard showing progress over time. | Basic Insights: statistics about reasons only. | `YourGrowth` |
+| Start Rate | The percentage of evaluated attempts marked as Helped. | Task completion rate: not tracked in UNSTUCK. | `StartRate` |
+
+## 4. Naming Rules
+
+- The MVP has two stored entities: `ProcrastinationEntry` and `StrategyAttempt`.
+- Reasons and strategies are predefined values, not separate database entities.
+- Each entry can have one strategy attempt in the MVP.
+- Feedback can be `helped`, `partially_helped`, `not_helped`, or `null` if not evaluated.
+- User accounts and Your Growth are planned for future versions.
+- Reported reasons are user-selected, not medical diagnoses.

@@ -1,0 +1,136 @@
+{
+  "procrastinationEntries": [
+    {
+      "taskDescription": "Start studying for a mathematics exam",
+      "procrastinationReason": "Feeling overwhelmed",
+      "recordedOn": "2026-10-26",
+      "strategyAttempt": {
+        "strategy": "Break the task into a five-minute step",
+        "feedback": "helped",
+        "feedbackRecordedOn": "2026-10-26"
+      }
+    },
+    {
+      "taskDescription": "Send an important email to my teacher",
+      "procrastinationReason": "Fear of failure",
+      "recordedOn": "2026-10-28",
+      "strategyAttempt": {
+        "strategy": "Write an imperfect first draft",
+        "feedback": "partially_helped",
+        "feedbackRecordedOn": "2026-10-29"
+      }
+    },
+    {
+      "taskDescription": "Organize my study materials",
+      "procrastinationReason": "Low motivation",
+      "recordedOn": "2026-11-01",
+      "strategyAttempt": {
+        "strategy": "Commit to just two minutes",
+        "feedback": "not_helped",
+        "feedbackRecordedOn": "2026-11-01"
+      }
+    },
+    {
+      "taskDescription": "Prepare a presentation",
+      "procrastinationReason": "Not knowing where to start",
+      "recordedOn": "2026-11-03",
+      "strategyAttempt": {
+        "strategy": "Write down the first concrete action",
+        "feedback": "helped",
+        "feedbackRecordedOn": "2026-11-03"
+      }
+    },
+    {
+      "taskDescription": "Clean my apartment",
+      "procrastinationReason": "Feeling overwhelmed",
+      "recordedOn": "2026-11-05",
+      "strategyAttempt": {
+        "strategy": "Break the task into a five-minute step",
+        "feedback": "helped",
+        "feedbackRecordedOn": "2026-11-05"
+      }
+    },
+    {
+      "taskDescription": "Finish a programming assignment",
+      "procrastinationReason": "Fear of failure",
+      "recordedOn": "2026-11-07",
+      "strategyAttempt": {
+        "strategy": "Write an imperfect first draft",
+        "feedback": "helped",
+        "feedbackRecordedOn": "2026-11-08"
+      }
+    },
+    {
+      "taskDescription": "Practice speaking a foreign language",
+      "procrastinationReason": "Low motivation",
+      "recordedOn": "2026-11-09",
+      "strategyAttempt": {
+        "strategy": "Commit to just two minutes",
+        "feedback": "partially_helped",
+        "feedbackRecordedOn": "2026-11-09"
+      }
+    },
+    {
+      "taskDescription": "Review lecture notes after a long day",
+      "procrastinationReason": "Tiredness",
+      "recordedOn": "2026-11-12",
+      "strategyAttempt": {
+        "strategy": "Take a short restorative break",
+        "feedback": "not_helped",
+        "feedbackRecordedOn": "2026-11-12"
+      }
+    },
+    {
+      "taskDescription": "Create a detailed presentation about an unfamiliar subject that requires reading several long research articles, comparing different sources, organizing the information into logical sections, preparing visual examples, writing speaker notes, and checking every reference before submitting the final version",
+      "procrastinationReason": "Feeling overwhelmed",
+      "recordedOn": "2026-11-14",
+      "strategyAttempt": {
+        "strategy": "Break the task into a five-minute step",
+        "feedback": "helped",
+        "feedbackRecordedOn": "2026-11-15"
+      }
+    },
+    {
+      "taskDescription": "Apply for an internship",
+      "procrastinationReason": "Fear of failure",
+      "recordedOn": "2026-11-16",
+      "strategyAttempt": {
+        "strategy": "Write an imperfect first draft",
+        "feedback": "partially_helped",
+        "feedbackRecordedOn": "2026-11-17"
+      }
+    },
+    {
+      "taskDescription": "Start a new web development project",
+      "procrastinationReason": "Not knowing where to start",
+      "recordedOn": "2026-11-18",
+      "strategyAttempt": {
+        "strategy": "Write down the first concrete action",
+        "feedback": "helped",
+        "feedbackRecordedOn": "2026-11-18"
+      }
+    },
+    {
+      "taskDescription": "Sort and organize old documents",
+      "procrastinationReason": "Feeling overwhelmed",
+      "recordedOn": "2026-11-20",
+      "strategyAttempt": {
+        "strategy": "Break the task into a five-minute step",
+        "feedback": null,
+        "feedbackRecordedOn": null
+      }
+    },
+    {
+      "taskDescription": "Complete a reading assignment",
+      "procrastinationReason": "Tiredness",
+      "recordedOn": "2026-11-22",
+      "strategyAttempt": null
+    },
+    {
+      "taskDescription": "Plan the first steps of a personal project",
+      "procrastinationReason": "Not knowing where to start",
+      "recordedOn": "2026-11-24",
+      "strategyAttempt": null
+    }
+  ]
+}
