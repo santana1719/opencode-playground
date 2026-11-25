@@ -35,11 +35,27 @@ Procrastination Reasons and Strategies are predefined values, not stored entitie
 
 - `ProcrastinationEntry.id` is the unique key for an entry.
 - `StrategyAttempt.id` is the unique key for an attempt.
-- `StrategyAttempt.entryId` references `ProcrastinationEntry.id`; an entry has zero or one attempt in the MVP.
+- `StrategyAttempt.entryId` references `ProcrastinationEntry.id` and is unique; an entry has zero or one attempt in the MVP.
 - Reason Codes and Strategy Codes are immutable identifiers; display labels may change only in the UI.
 - `ownerId` prepares the data model for future User Accounts but provides no isolation on its own.
+
+## Constraints
+
+- `id` values are generated UUIDs and unique within their entity.
+- `taskDescription` is trimmed before storage and must be 1–500 characters.
+- `procrastinationReason` must be one of the catalog Reason Codes in `docs/requirements.md`; the UI never offers an out-of-catalog value.
+- `strategyCode` must be the Strategy mapped to the entry's Reason Code.
+- `feedback` is `helped`, `partially_helped`, `not_helped` or `null`; once recorded it cannot change.
+- `feedbackRecordedAt` is required when `feedback` is not `null` and is `null` otherwise.
+- `recordedAt` and non-null `feedbackRecordedAt` are UTC ISO 8601 strings with milliseconds.
+- `ownerId` is always `public_demo` in the MVP.
+- Seed display labels and date-only values are converted on import to stable codes and `00:00:00.000Z` timestamps.
 
 ## Storage edge behavior
 
 - If browser storage is unavailable or full, keep records in memory for the current session, show the warning defined in `docs/requirements.md`, and send nothing to the API.
 - If stored data is malformed or missing required fields, skip the invalid records, show the corrupted-data warning, and continue with the valid records.
+
+## Database access
+
+Demo Data rows are read from Neon with `pg` and explicit parameterized SQL in the repository; `DATABASE_URL` comes from the environment. No ORM or query builder is used. Physical table names, column types, indexes and constraints beyond the keys and rules above are not decided here. Personal data is never written to Neon.
