@@ -12,6 +12,9 @@ This glossary defines the key terms used in UNSTUCK. Use these names consistentl
 | Procrastination Entry | A record of a postponed task and its possible cause. | Task Description: only the text describing the task. | `ProcrastinationEntry` |
 | Task Description | The activity the user is postponing. | Procrastination Entry: the complete record. | `taskDescription` |
 | Procrastination Reason | A possible reason selected by the user. | A confirmed psychological diagnosis. | `ProcrastinationReason` |
+| Reason Code | A stable identifier for a Procrastination Reason, stored in `procrastinationReason`. | The display label of the Procrastination Reason, which may change. | `procrastinationReason` |
+| Demo Data | Fictional Procrastination Entries and Strategy Attempts loaded from `data/seed.json` for the public demo. | Real user data: no real entries are stored in the public database without authentication. | `data/seed.json` |
+| Owner ID | A stable identifier on stored records, reserved for future User Accounts. | User Account or authentication; in the MVP it is not a security boundary or user isolation. | `ownerId` |
 
 ## 2. Strategies and Feedback
 
@@ -21,6 +24,7 @@ This glossary defines the key terms used in UNSTUCK. Use these names consistentl
 | Strategy Suggestion | A strategy recommended for a selected reason. | Strategy Feedback: the result after trying it. | `StrategySuggestion` |
 | Strategy Attempt | A record linking an entry to a suggested strategy and feedback. | Strategy: the action itself. | `StrategyAttempt` |
 | Strategy Feedback | The user's evaluation of whether a strategy helped. | Strategy Suggestion: the recommendation. | `StrategyFeedback` |
+| Strategy Code | A stable identifier for a Strategy, stored in a Strategy Attempt. | The display label of the Strategy; a Strategy Attempt. | `strategyCode` |
 
 ## 3. Insights and Progress
 
@@ -39,3 +43,5 @@ This glossary defines the key terms used in UNSTUCK. Use these names consistentl
 - Feedback can be `helped`, `partially_helped`, `not_helped`, or `null` if not evaluated.
 - User accounts and Your Growth are planned for future versions.
 - Reported reasons are user-selected, not medical diagnoses.
+- Reason Codes and Strategy Codes are stable identifiers; display labels are not used as identities.
+- Demo Data is fictional; real user data is not stored in the public database in the MVP.
