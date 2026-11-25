@@ -12,12 +12,12 @@
 | --- | --- |
 | `src/App.tsx` | Page layout and composition of the three sections. No storage implementation. |
 | `src/components/EntryForm.tsx` | Task Description input and Procrastination Reason selection. |
-| `src/components/EntryCard.tsx` | One personal Procrastination Entry, its Strategy Suggestion and Strategy Feedback controls. |
+| `src/components/EntryCard.tsx` | One personal Procrastination Entry: its Strategy Suggestion display text, Strategy Feedback controls, and the saved feedback label and recorded date once feedback is stored. |
 | `src/components/MyEntriesSection.tsx` | The interactive `My entries` section and its empty state. |
 | `src/components/DemoDataSection.tsx` | The read-only `Demo Data` section, including loading and error states. |
 | `src/components/BasicInsights.tsx` | Reason Frequency from personal entries only. |
-| `src/catalog.ts` | Predefined Reason Codes, Strategy Codes and display labels from `docs/requirements.md`. |
-| `src/validation.ts` | Pure validation helpers returning the exact messages from `docs/requirements.md`. |
+| `src/catalog.ts` | Predefined Reason Codes, Strategy Codes, display labels and the Reason→Strategy mapping from `docs/requirements.md` §6.5; catalog order drives Basic Insights ordering. |
+| `src/validation.ts` | Pure validation helpers for form values and stored records, using the exact messages from `docs/requirements.md` and the catalog rules. |
 | `src/types.ts` | Explicit TypeScript types shared across components and helpers. |
 | `src/api.ts` | Fetch functions for backend calls. |
 | `src/storage.ts` | Browser storage access and the in-memory fallback. |
@@ -36,12 +36,12 @@ Do not add `features/` folders, a router, Context, a reducer, an external state-
 
 - The frontend uses relative URLs such as `fetch('/api/version')` and `fetch('/api/demo/entries')`; all backend calls go through `/api/...`.
 - Validate on submit with `validation.ts`: trim the Task Description, check the 1–500 limit, require a catalog Reason Code and require a Strategy Feedback value before saving it. Show the exact messages from `docs/requirements.md` and keep the form usable after an error.
-- Use native controlled forms: `EntryForm.tsx` keeps Task Description, Reason Code and error messages in `useState`; `EntryCard.tsx` keeps the selected Strategy Feedback in `useState` and disables the controls once feedback is recorded. Do not add a form library.
-- Personal `ProcrastinationEntry` and `StrategyAttempt` records live only in browser storage. If storage is unavailable or full, keep them in memory for the current session and show the warning defined in `docs/requirements.md`; send nothing to the API.
-- If stored data is malformed or has missing required fields, skip invalid records, show the corrupted-data warning and continue with valid records.
+- Use native controlled forms: `EntryForm.tsx` keeps Task Description, Reason Code and error messages in `useState`; `EntryCard.tsx` keeps the selected Strategy Feedback in `useState` and disables the controls once feedback is recorded. Do not add a form library. `EntryCard.tsx` shows the mapped Strategy display text when an attempt exists, and shows the saved feedback label and recorded date once feedback is recorded; before evaluation it shows neither saved feedback nor a feedback date.
+- Personal `ProcrastinationEntry` and `StrategyAttempt` records live only in browser storage. If storage is unavailable or full, keep them in memory for the current session, show the warning defined in `docs/requirements.md` only once, and send nothing to the API.
+- On load, `storage.ts` calls the pure guards in `validation.ts`: a stored record is used only if its types, UUIDs, catalog codes, mapped Strategy Code, feedback values/dates, unique ids and entry references satisfy the rules in `data-model.md` and `decisions.md`. Skip invalid records and duplicate ids/orphans, show the exact corrupted-data warning, and continue with valid records; see `decisions.md` for the full rule set.
 - `Demo Data` is fictional, read-only and shown in a separate section from `My entries`. Only `My entries` is interactive.
 - `Basic Insights` shows Reason Frequency from personal entries only; Demo Data is never counted. Render it as a semantic ordered list with the Procrastination Reason display label, the count and a proportional Tailwind bar, ordered by count descending then catalog order. Show the exact empty message from `docs/requirements.md` when there are no personal entries.
 - Handle loading, error and empty states for Demo Data without making personal entries, the form or `Basic Insights` depend on that request; use the exact strings in `docs/requirements.md`.
-- Use function components and hooks, semantic HTML and Tailwind utility classes only; do not add a headless or full component library. Label form fields, keep controls keyboard-usable, and design for small screens first with `sm:`/`md:` breakpoints.
+- Use function components and hooks, semantic HTML and Tailwind utility classes only; do not add a headless or full component library. Label form fields, keep controls keyboard-usable, design for small screens first with `sm:`/`md:` breakpoints, and verify the layout at 360 × 640 and 1280 × 800 with no horizontal scrolling at either viewport.
 - Keep fetch functions in `src/api.ts` and give responses explicit TypeScript types.
 - Create new files under `src/components/` only for the UI concerns above or when a component is reused or a file becomes hard to read.

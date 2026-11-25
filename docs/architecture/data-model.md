@@ -1,6 +1,6 @@
 # Data model
 
-This file records the agreed shape of the two stored entities. It does not choose physical SQL table names, column types, indexes or constraints beyond what is recorded here.
+This file records the agreed shape of the two stored entities and the physical Neon table and column names for Demo Data. No other storage layout is assumed.
 
 ## Stored entities
 
@@ -53,9 +53,34 @@ Procrastination Reasons and Strategies are predefined values, not stored entitie
 
 ## Storage edge behavior
 
-- If browser storage is unavailable or full, keep records in memory for the current session, show the warning defined in `docs/requirements.md`, and send nothing to the API.
-- If stored data is malformed or missing required fields, skip the invalid records, show the corrupted-data warning, and continue with the valid records.
+- If browser storage is unavailable or full, keep records in memory for the current session, show the warning defined in `docs/requirements.md` only once, and send nothing to the API.
+- If stored data is malformed or missing required fields, skip the invalid records, show the corrupted-data warning, and continue with the valid records. `storage.ts` applies the pure stored-record guards in `apps/web/src/validation.ts` on load; the exact rule set is recorded in `decisions.md`.
 
 ## Database access
 
-Demo Data rows are read from Neon with `pg` and explicit parameterized SQL in the repository; `DATABASE_URL` comes from the environment. No ORM or query builder is used. Physical table names, column types, indexes and constraints beyond the keys and rules above are not decided here. Personal data is never written to Neon.
+Demo Data rows are read from Neon with `pg` and explicit parameterized SQL in the repository; `DATABASE_URL` comes from the environment. No ORM or query builder is used. Personal data is never written to Neon.
+
+## SQL schema (Neon Demo Data)
+
+The schema is defined in the checked-in `apps/api/db/001_demo_entries.sql`, applied manually before `npm run db:seed` (see `decisions.md`). Timestamps are `TIMESTAMPTZ(3)` instants; `pg` returns `Date` objects, and the repository converts them with `toISOString()` to the ISO 8601 strings with milliseconds used by the API and the in-memory fake. The seed importer converts date-only values to `YYYY-MM-DDT00:00:00.000Z` before insert. The repository and seed import map these snake_case columns to the camelCase entity fields above.
+
+`demo_procrastination_entries`
+
+| Column | SQL type | Notes |
+| --- | --- | --- |
+| `id` | `UUID PRIMARY KEY` | Generated on import; unchanged by reseeding. |
+| `seed_key` | `TEXT NOT NULL UNIQUE` | Seed identity for idempotent import: copied from the immutable `seedKey` field in `data/seed.json`; import metadata only, not part of the API entity. |
+| `task_description` | `TEXT NOT NULL` | Maps to `taskDescription`; trimmed and 1–500 characters on import. |
+| `procrastination_reason` | `TEXT NOT NULL` | Maps to `procrastinationReason`; Reason Code from the catalog. |
+| `recorded_at` | `TIMESTAMPTZ(3) NOT NULL` | Maps to `recordedAt`; read as `Date` then converted to an ISO 8601 string with milliseconds by the repository. |
+| `owner_id` | `TEXT NOT NULL` | Maps to `ownerId`; `public_demo`, enforced by a database check. |
+
+`demo_strategy_attempts`
+
+| Column | SQL type | Notes |
+| --- | --- | --- |
+| `id` | `UUID PRIMARY KEY` | Generated when the attempt is created. |
+| `entry_id` | `UUID NOT NULL UNIQUE` | Maps to `entryId`; foreign key to `demo_procrastination_entries(id)`, enforcing one attempt per entry. |
+| `strategy_code` | `TEXT NOT NULL` | Maps to `strategyCode`; Strategy Code mapped from the entry's Reason Code. |
+| `feedback` | `TEXT NULL` | Maps to `feedback`; `helped`, `partially_helped`, `not_helped` or `NULL`, enforced by a database check. |
+| `feedback_recorded_at` | `TIMESTAMPTZ(3) NULL` | Maps to `feedbackRecordedAt`; read as `Date` then converted to an ISO 8601 string with milliseconds by the repository; non-null exactly when `feedback` is non-null, enforced by a database check. |
