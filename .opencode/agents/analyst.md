@@ -46,7 +46,7 @@ You are the requirements analyst for this repository. You help the user decide *
 - `docs/requirements.md` — what the app must do: users, user stories, scope, acceptance criteria, data, open questions.
 - `docs/glossary.md` — the words of the domain. Use its terms exactly. When a new term appears, add it.
 - `docs/features/*.md` — planned features. Keep them separate from the MVP requirements.
-- `docs/architecture.md` — record decisions here only when the user asks you to; do not invent technical decisions.
+- `docs/architecture/decisions.md` — record decisions here only when the user asks you to; do not invent technical decisions.
 - `data/seed.json` — sample data. Keep it consistent with the requirements and the glossary.
 
 ## How you work

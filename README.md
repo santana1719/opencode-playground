@@ -16,7 +16,7 @@ Step 2 is about the product: do it in any AI chat. **From Step 3 on, work in Ope
 | --- | --- | --- |
 | [1. Setup](docs/guide/01-setup.md) | Create your repo, run the app, connect OpenCode | App runs, tests pass, the agent answers |
 | [2. Idea and scope](docs/guide/02-idea-and-scope.md) | Pick a unique idea, a small MVP and the next feature (any AI chat) | Brief, `docs/glossary.md`, `docs/features/`, `data/seed.json` |
-| [3. Data, key decisions and hosting](docs/guide/03-data-and-hosting.md) | Decide storage, key decisions and hosting; connect the database | Decisions in `docs/architecture.md`, `.env` |
+| [3. Data, key decisions and hosting](docs/guide/03-data-and-hosting.md) | Decide storage, key decisions and hosting; connect the database | Decisions in `docs/architecture/decisions.md`, `.env` |
 | [4. Requirements](docs/guide/04-requirements.md) | Turn the brief into testable requirements with the agent | Complete `docs/requirements.md` |
 | [5. Architecture](docs/guide/05-architecture.md) | Agree on data model, code structure and libraries with an architect agent | `docs/architecture/` folder, `architect` agent |
 | [6. Build the MVP](docs/guide/06-build-the-mvp.md) | Plan → implement → verify, one story at a time | Working MVP, green checks, commits |
@@ -43,7 +43,7 @@ Details: [docs/development.md](docs/development.md).
 apps/web/        React 19 + Vite + Tailwind CSS frontend
 apps/api/        Express 5 backend (one endpoint: GET /api/version)
 e2e/             Playwright end-to-end tests
-docs/            requirements.md, architecture.md, glossary.md, development.md, guide/
+docs/            requirements.md, architecture/, glossary.md, development.md, guide/
 .opencode/       AI agents (analyst; subagents frontend, backend, reviewer) and commands (/plan-feature, /implement, /verify)
 AGENTS.md        rules for AI agents
 opencode.jsonc   OpenCode configuration and permissions

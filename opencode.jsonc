@@ -10,7 +10,9 @@
 
   // Extra files loaded into every agent's context, in addition to AGENTS.md.
   // glossary.md keeps the agent from mixing up similar words of your domain.
-  "instructions": ["docs/requirements.md", "docs/architecture.md", "docs/glossary.md"],
+  // Only README.md and decisions.md from docs/architecture/ are loaded globally;
+  // agents read the other architecture files when their task needs them.
+  "instructions": ["docs/requirements.md", "docs/architecture/README.md", "docs/architecture/decisions.md", "docs/glossary.md"],
 
   // Rules are checked from top to bottom and the LAST matching rule wins,
   // so broad rules come first and exceptions follow them.

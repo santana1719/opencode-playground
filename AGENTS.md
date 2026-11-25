@@ -10,7 +10,7 @@ A full-stack TypeScript starter. It contains working infrastructure but no produ
 apps/web/   React 19 + Vite + Tailwind CSS 4 frontend (Vitest + React Testing Library)
 apps/api/   Express 5 API on Node.js, a single file: src/server.ts (Vitest + Supertest)
 e2e/        Playwright end-to-end tests (playwright.config.ts at the root)
-docs/       requirements.md (what to build), architecture.md (decisions), glossary.md (domain terms),
+docs/       requirements.md (what to build), architecture/ (overview, rules and decisions), glossary.md (domain terms),
             development.md (how to run),
             features/ (planned features: do not implement unless asked)
 .opencode/  OpenCode agents: analyst (requirements, docs only), subagents frontend, backend, reviewer;
@@ -23,7 +23,7 @@ docs/       requirements.md (what to build), architecture.md (decisions), glossa
 ## Before implementing a feature
 
 1. Read `docs/requirements.md`. Implement only what it asks for. If it is empty or unclear, ask instead of guessing.
-2. Read `docs/architecture.md` and follow the decisions recorded there. Files in `docs/features/` describe planned features: keep the design compatible with them, but do not build them until asked.
+2. Read `docs/architecture/README.md` and `docs/architecture/decisions.md` and follow the decisions recorded there. Files in `docs/features/` describe planned features: keep the design compatible with them, but do not build them until asked.
 3. Read the code you are about to change.
 4. For anything larger than a small fix, propose a short plan first (or use `/plan-feature`).
 
@@ -33,7 +33,7 @@ docs/       requirements.md (what to build), architecture.md (decisions), glossa
 - TypeScript strict mode everywhere. Avoid `any`; type API request and response shapes.
 - Prefer simple, readable code over abstractions. Do not add files, layers or features "for later".
 - Do not add dependencies unless clearly needed. Explain every new dependency and why it is needed.
-- Use the data storage, hosting and other technical decisions recorded in `docs/architecture.md`. If a decision the task needs is missing, propose options and ask instead of choosing silently.
+- Use the data storage, hosting and other technical decisions recorded in `docs/architecture/decisions.md`. If a decision the task needs is missing, propose options and ask instead of choosing silently.
 - Secrets (database URLs, API keys) come from environment variables. Never hard-code them, never commit `.env`, and keep `.env.example` up to date with variable names and fake values.
 - Frontend: function components and hooks, Tailwind utility classes, handle loading/error/empty states, accessible semantic HTML.
 - Backend: all routes under `/api`, validate input, return JSON errors with correct status codes. Node.js runs the `.ts` files directly, so relative imports use the `.ts` extension and only erasable TypeScript syntax is allowed (no `enum`, `namespace` or parameter properties).
@@ -62,7 +62,7 @@ Use `-w apps/web` or `-w apps/api` to run a script for one app only. Do not run 
 
 ## After implementing
 
-- Update `docs/architecture.md` after significant changes (new endpoints, data model, storage, folder structure, dependencies).
+- Update `docs/architecture/decisions.md` and the relevant files in `docs/architecture/` after significant changes (new endpoints, data model, storage, folder structure, dependencies).
 - Run the relevant verification commands and fix failures you caused.
 - Report honestly: list the commands you ran with their real results. Never claim tests passed unless you ran them. Clearly state anything incomplete, skipped or failing.
 - Do not commit or push unless the user asks. Never run `git push`.

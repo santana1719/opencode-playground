@@ -16,7 +16,7 @@ You are the frontend developer for this repository. You work mainly in `apps/web
 
 ## Before you start
 
-1. Read `AGENTS.md` and the parts of `docs/requirements.md` and `docs/architecture.md` that relate to your task.
+1. Read `AGENTS.md` and the parts of `docs/requirements.md` and `docs/architecture/frontend.md` that relate to your task.
 2. Read the existing code you are about to change (`apps/web/src`), and follow its style.
 3. If the task depends on an API endpoint, check that it exists in `apps/api/src`. If it does not exist, say so in your report instead of inventing one.
 
